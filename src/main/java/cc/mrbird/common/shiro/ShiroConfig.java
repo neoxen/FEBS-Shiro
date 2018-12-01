@@ -59,7 +59,7 @@ public class ShiroConfig {
     private RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
         // 缓存时间，单位为秒
-        redisManager.setExpire(febsProperties.getShiro().getExpireIn());
+        //redisManager.setExpire(febsProperties.getShiro().getExpireIn()); // removed from shiro-redis v3.1.0 api
         redisManager.setHost(host);
         redisManager.setPort(port);
         if (StringUtils.isNotBlank(password))
@@ -134,7 +134,6 @@ public class ShiroConfig {
     private SimpleCookie rememberMeCookie() {
         // 设置 cookie 名称，对应 login.html 页面的 <input type="checkbox" name="rememberMe"/>
         SimpleCookie cookie = new SimpleCookie("rememberMe");
-//        cookie.setSecure(true);  // 只在 https中有效 注释掉 正常
         // 设置 cookie 的过期时间，单位为秒，这里为一天
         cookie.setMaxAge(febsProperties.getShiro().getCookieTimeout());
         return cookie;
